@@ -61,3 +61,18 @@ db.serialize(() => {
     db.close();
   });
 });
+
+
+
+const createCommentsTable = `
+  CREATE TABLE IF NOT EXISTS comments (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    movie_id INTEGER,
+    nickname TEXT,
+    comment TEXT,
+    created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (movie_id) REFERENCES movies(id)
+  );
+`;
+
+db.run(createCommentsTable);
